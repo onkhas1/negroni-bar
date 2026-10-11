@@ -3,21 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Negroni — выездной коктейльный бар</title>
-<meta name="description" content="Negroni: выездной коктейльный бар для ваших событий. Консалтинг и мероприятия для заведений. Оставьте заявку.">
-<meta property="og:title" content="Negroni — выездной бар">
-<meta property="og:description" content="Бар на вашем событии. Консалтинг и мероприятия для заведений.">
+<title>Negroni — выездной бар в Барнауле</title>
+<meta name="description" content="Negroni: выездной бар в Барнауле. Авторские коктейли, хрустальная посуда, профессиональная команда. Свадьбы, дни рождения, корпоративы, фестивали. Оставьте заявку.">
+<meta property="og:title" content="Negroni — выездной бар в Барнауле">
+<meta property="og:description" content="Авторские коктейли и профессиональная команда на вашем событии. Консалтинг и мероприятия для заведений.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231B2F29'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23BFA073' font-family='sans-serif'%3EN%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Tenor+Sans&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Negroni","description":"Выездной бар в Барнауле","telephone":"+79967076653","areaServed":"Барнаул","address":{"@type":"PostalAddress","addressLocality":"Барнаул","addressCountry":"RU"},"sameAs":["https://instagram.com/negroni_barnaul","https://t.me/Negroni_Barnaul"]}
+</script>
 <script>document.documentElement.classList.add('js');</script>
 <style>
 /*
   Идея: хвойно-зелёная гамма, холодный камень и латунный акцент.
   Движение: плавное появление блоков, лёгкий параллакс фото на первом экране,
-  бегущая строка, слайдер и горизонтальная галерея. Всё отключается при prefers-reduced-motion.
+  бегущая строка, слайдер, горизонтальная галерея и окно просмотра коктейля.
+  Всё отключается при prefers-reduced-motion.
+  Секции чередуют фон: камень, хвоя, бумага, камень, бумага, камень, бумага, хвоя.
 */
 :root{
   --pine:#1B2F29; --pine-2:#2A4A3F; --ink:#14201D; --stone:#E6E8E3; --paper:#F2F3EF; --brass:#BFA073; --muted:#58655F; --line:#C5CBC4;
@@ -26,10 +31,12 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--stone);color:var(--ink);font:400 1.0625rem/1.65 var(--f-body);overflow-x:hidden}
 body.lock{overflow:hidden}
-h1,h2,h3,p{margin:0}
+h1,h2,h3,p,dl,dd,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
 img{max-width:100%;display:block}
 a{color:inherit}
 button{font:inherit;color:inherit}
@@ -57,7 +64,7 @@ h2{font:400 clamp(2rem,5.2vw,3.5rem)/1.12 var(--f-display);letter-spacing:-.005e
 .bar-in{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:14px}
 .brand{display:flex;align-items:center;gap:10px;font:600 1rem var(--f-body);text-decoration:none;position:relative;z-index:60}
 .brand img{height:40px;width:auto}
-.nav{display:flex;align-items:center;gap:30px;font-size:.95rem}
+.nav{display:flex;align-items:center;gap:28px;font-size:.95rem}
 .nav a:not(.btn){text-decoration:none;opacity:.9}
 .nav a:not(.btn):hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
 .burger{display:none;position:relative;z-index:60;width:44px;height:44px;border:0;background:transparent;cursor:pointer}
@@ -67,7 +74,6 @@ h2{font:400 clamp(2rem,5.2vw,3.5rem)/1.12 var(--f-display);letter-spacing:-.005e
 .burger[aria-expanded="true"] span:nth-child(1){top:22px;transform:rotate(45deg)}
 .burger[aria-expanded="true"] span:nth-child(2){top:22px;transform:rotate(-45deg)}
 .menu{position:fixed;inset:0;z-index:40;background:var(--pine);color:var(--paper);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:90px 24px 40px}
-.menu[hidden]{display:none}
 .menu a{font:400 clamp(2rem,9vw,3rem)/1.2 var(--f-display);text-decoration:none;padding-block:6px}
 .menu .btn{margin-top:22px;align-self:flex-start;font:600 1rem var(--f-body)}
 
@@ -79,11 +85,9 @@ h2{font:400 clamp(2rem,5.2vw,3.5rem)/1.12 var(--f-display);letter-spacing:-.005e
 .hero-main{width:100%;padding-block:140px clamp(52px,8vw,100px)}
 .mark{margin:0;font:700 clamp(2.4rem,9vw,6rem)/1 var(--f-body);letter-spacing:.32em}
 .mark img{width:min(46rem,88vw);height:auto;margin-left:-1.5%}
-.hero-main p{margin-top:24px;max-width:30rem;font-size:clamp(1.08rem,2vw,1.3rem);line-height:1.5;color:#E6E9E4}
 .cta{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;margin-top:36px}
 .js .hero .rv{animation:rise 1s ease-out both;transition:none}
 .js .hero .rv:nth-child(2){animation-delay:.12s}
-.js .hero .rv:nth-child(3){animation-delay:.24s}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 /* бегущая строка */
@@ -93,12 +97,24 @@ h2{font:400 clamp(2rem,5.2vw,3.5rem)/1.12 var(--f-display);letter-spacing:-.005e
 .marquee span{font:400 clamp(1.5rem,3.4vw,2.4rem)/1 var(--f-display);padding:22px clamp(28px,5vw,64px)}
 @keyframes run{to{transform:translateX(-50%)}}
 
-/* о баре */
-.about-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px clamp(40px,8vw,112px);align-items:end}
-.about-grid .lede{margin-top:0}
+/* об основателе */
+.founder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(100svh,50rem)}
+.founder.nophoto{grid-template-columns:minmax(0,1fr)}
+.f-photo{position:relative;background:var(--pine-2);min-height:28rem}
+.f-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.f-body{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-block:clamp(56px,9vw,120px);padding-left:clamp(32px,6vw,96px);padding-right:max(20px,calc((100vw - 74rem)/2 + 20px))}
+.founder.nophoto .f-body{padding-left:max(20px,calc((100vw - 74rem)/2 + 20px));max-width:60rem}
+.facts-wrap{padding-block:clamp(56px,8vw,96px) clamp(72px,11vw,150px)}
+.f-lead{margin-top:24px;font:400 clamp(1.3rem,2.4vw,1.7rem)/1.35 var(--f-display);max-width:30rem}
+.f-text{margin-top:18px;max-width:38rem;color:var(--muted)}
+.f-body .cta{margin-top:32px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:36px 48px}
+.facts>div{border-top:1px solid var(--ink);padding-top:20px}
+.facts b{display:block;font:400 clamp(2.8rem,6.5vw,4.6rem)/1 var(--f-display)}
+.facts p{margin-top:12px;color:var(--muted);max-width:19rem}
 
-/* слайдер */
-.slider-sec{background:var(--pine);color:var(--paper)}
+/* форматы (слайдер) */
+.slider-sec{background:var(--pine);color:var(--paper);padding-bottom:0}
 .slider-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
 .ctrl{display:flex;align-items:center;gap:18px}
 .count{font:400 1.4rem var(--f-display);min-width:5.4rem}
@@ -108,9 +124,28 @@ h2{font:400 clamp(2rem,5.2vw,3.5rem)/1.12 var(--f-display);letter-spacing:-.005e
 .arrow svg{width:18px;height:18px}
 .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-top:clamp(40px,6vw,72px);-webkit-overflow-scrolling:touch}
 .track::-webkit-scrollbar{display:none}
-.slide{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px clamp(32px,7vw,96px);align-items:end;padding-block:8px 4px;border-top:1px solid rgba(242,243,239,.28)}
-.slide h3{font:400 clamp(2.6rem,7vw,5.2rem)/1 var(--f-display);padding-top:28px}
-.slide p{color:#D3DAD4;max-width:30rem;padding-top:28px}
+.slide{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(88svh,48rem)}
+.slide.nophoto{grid-template-columns:minmax(0,1fr)}
+.s-photo{position:relative;background:var(--pine-2);min-height:26rem}
+.s-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s-body{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding-block:clamp(44px,6vw,80px);padding-left:clamp(32px,6vw,96px);padding-right:max(20px,calc((100vw - 74rem)/2 + 20px))}
+.slide.nophoto .s-body{padding-left:max(20px,calc((100vw - 74rem)/2 + 20px));max-width:60rem}
+.slide h3{font:400 clamp(2.6rem,7vw,5.2rem)/1 var(--f-display)}
+.slide .s-text{margin-top:20px;color:#D3DAD4;max-width:34rem}
+.tiers{margin-top:28px;width:100%}
+.tiers li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 18px;align-items:baseline;padding-block:16px;border-top:1px solid rgba(242,243,239,.22)}
+.tiers li:first-child{border-top:0;padding-top:0}
+.tiers .a{font:400 1.25rem/1.3 var(--f-display)}
+.tiers .b{color:#CFD6D0;font-size:.95rem}
+.tiers .c{font:400 1.25rem/1.3 var(--f-display);color:var(--brass);white-space:nowrap}
+.s-note{margin-top:18px;font-size:.88rem;color:#AEB9B3;max-width:34rem}
+
+/* что входит */
+.incl-sec{background:var(--paper)}
+.incl-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px clamp(40px,8vw,112px);align-items:start}
+.incl li{border-top:1px solid var(--ink);padding-block:22px;font:400 clamp(1.4rem,3vw,2rem)/1.2 var(--f-display)}
+.incl li:last-child{border-bottom:1px solid var(--ink)}
+.incl-note{margin-top:20px;color:var(--muted);max-width:30rem;font-size:.95rem}
 
 /* галерея */
 .g-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
@@ -119,8 +154,42 @@ h2{font:400 clamp(2rem,5.2vw,3.5rem)/1.12 var(--f-display);letter-spacing:-.005e
 .gallery::-webkit-scrollbar{display:none}
 .gallery img{flex:none;height:clamp(340px,64vw,620px);width:auto;min-width:220px;scroll-snap-align:start;background:var(--line);object-fit:cover}
 
+/* меню */
+.carte{background:var(--paper)}
+.carte-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));column-gap:clamp(32px,6vw,80px);margin-top:clamp(40px,6vw,64px)}
+.carte-list li{border-top:1px solid var(--ink)}
+.c-item{appearance:none;width:100%;display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:18px;align-items:center;padding:16px 0;background:none;border:0;text-align:left;cursor:pointer;color:inherit}
+.c-ico{width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--stone)}
+.c-ico.no-img{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%2358655F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 10h28L24 26z'/%3E%3Cpath d='M24 26v12M16 38h16'/%3E%3C/svg%3E");background-position:center;background-size:52%;background-repeat:no-repeat}
+.c-ico img{width:100%;height:100%;object-fit:contain;padding:5px;transition:transform .4s}
+.c-item:hover .c-ico img{transform:scale(1.1)}
+.c-txt{display:grid;gap:2px;min-width:0}
+.c-name{font:400 clamp(1.5rem,2.6vw,1.9rem)/1.15 var(--f-display)}
+.c-comp{color:var(--muted);font-size:.98rem}
+.c-go{width:10px;height:10px;border-right:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(45deg);margin-right:6px;transition:transform .25s}
+.c-item:hover .c-go{transform:translateX(4px) rotate(45deg)}
+.c-hint{margin-top:10px;font-size:.92rem;color:var(--muted)}
+
+/* окно коктейля */
+.cdlg{border:0;padding:0;margin:auto;width:min(62rem,calc(100vw - 24px));max-height:calc(100svh - 24px);overflow:auto;background:var(--paper);color:var(--ink)}
+.cdlg::backdrop{background:rgba(12,22,19,.74)}
+.cdlg[open]{animation:pop .3s ease both}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cd-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.cdlg.nophoto .cd-grid{grid-template-columns:minmax(0,1fr)}
+.cd-photo{position:relative;min-height:26rem;background:linear-gradient(160deg,var(--stone),#D6DBD3)}
+.cd-photo img{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;filter:drop-shadow(0 18px 22px rgba(20,32,29,.28))}
+.cd-body{padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:18px;min-width:0}
+.cd-body h3{font:400 clamp(2rem,4.4vw,3rem)/1.1 var(--f-display)}
+.cd-tags{display:flex;flex-wrap:wrap;gap:8px}
+.cd-tags li{border:1px solid var(--ink);border-radius:999px;padding:3px 14px;font-size:.9rem}
+.cd-body p{color:var(--muted);max-width:28rem}
+.cd-nav{display:flex;align-items:center;gap:12px;color:var(--muted);font:400 1rem var(--f-display)}
+.cd-nav .arrow{width:44px;height:44px;border-color:rgba(20,32,29,.4);color:var(--ink)}
+.cd-close{position:absolute;top:12px;right:12px;z-index:3;width:44px;height:44px;border:0;border-radius:50%;background:rgba(242,243,239,.92);cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+.cd-close svg{width:16px;height:16px}
+
 /* для заведений */
-.venue{background:var(--paper)}
 .venue-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px clamp(40px,8vw,112px);align-items:start}
 .offers{display:grid}
 .offer{border-top:1px solid var(--ink);padding-block:30px;display:grid;gap:10px}
@@ -128,19 +197,8 @@ h2{font:400 clamp(2rem,5.2vw,3.5rem)/1.12 var(--f-display);letter-spacing:-.005e
 .offer h3{font:400 clamp(1.8rem,3.8vw,2.7rem)/1.1 var(--f-display)}
 .offer p{color:var(--muted);max-width:30rem}
 
-/* переключатель типа заявки */
-.group{display:grid;gap:26px}
-.group[hidden]{display:none}
-.tabs{display:inline-grid;grid-auto-flow:column;justify-self:start;max-width:100%;border:1px solid rgba(242,243,239,.35);border-radius:999px;padding:4px}
-.tabs label{position:relative;cursor:pointer;color:var(--paper);font-size:.95rem;font-weight:500}
-.tabs input{position:absolute;inset:0;width:100%;height:100%;min-height:0;margin:0;padding:0;border:0;opacity:0;cursor:pointer}
-.tabs input:focus{outline:none}
-.tabs span{display:block;padding:10px 20px;border-radius:999px;transition:background .2s}
-.tabs input:checked + span{background:var(--brass);color:var(--ink)}
-.tabs input:focus-visible + span{outline:2px solid var(--paper);outline-offset:2px}
-
 /* вопросы */
-.faq{background:var(--stone)}
+.faq{background:var(--paper)}
 .faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px clamp(40px,8vw,112px);align-items:start}
 details.q{border-top:1px solid var(--ink)}
 details.q:last-child{border-bottom:1px solid var(--ink)}
@@ -154,8 +212,9 @@ details.q p{padding-bottom:26px;max-width:36rem;color:var(--muted)}
 .req{background:var(--pine);color:var(--paper);color-scheme:dark}
 .req .lede{color:#CFD6D0}
 .req-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px clamp(40px,8vw,112px);align-items:start}
-.contacts{display:grid;gap:10px;margin-top:32px;font-weight:500}
+.contacts{display:grid;gap:10px;margin-top:32px;font-weight:500;justify-items:start}
 form{display:grid;gap:26px}
+.group{display:grid;gap:26px}
 .row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
 .field{display:grid;gap:2px;min-width:0}
 label{font-size:.9rem;font-weight:500;color:#AEB9B3}
@@ -166,6 +225,13 @@ select option{color:var(--ink);background:var(--paper)}
 textarea{min-height:120px;resize:vertical}
 input::placeholder,textarea::placeholder{color:#8C9A93}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--paper);outline-offset:6px;border-bottom-color:var(--brass)}
+.tabs{display:inline-grid;grid-auto-flow:column;justify-self:start;max-width:100%;border:1px solid rgba(242,243,239,.35);border-radius:999px;padding:4px}
+.tabs label{position:relative;cursor:pointer;color:var(--paper);font-size:.95rem;font-weight:500}
+.tabs input{position:absolute;inset:0;width:100%;height:100%;min-height:0;margin:0;padding:0;border:0;opacity:0;cursor:pointer}
+.tabs input:focus{outline:none}
+.tabs span{display:block;padding:10px 20px;border-radius:999px;transition:background .2s}
+.tabs input:checked + span{background:var(--brass);color:var(--ink)}
+.tabs input:focus-visible + span{outline:2px solid var(--paper);outline-offset:2px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
 .consent{font-size:.86rem;color:#AEB9B3;max-width:32rem}
 .status{min-height:1.5em;font-weight:500}
@@ -182,19 +248,28 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
 @media (max-width:860px){
   .nav{display:none}
   .burger{display:block}
-  .about-grid,.faq-grid,.req-grid,.venue-grid,.slide{grid-template-columns:minmax(0,1fr)}
-  .slide p{padding-top:0}
-  .slide h3{padding-top:24px}
+  .founder,.faq-grid,.req-grid,.venue-grid,.incl-grid,.slide{grid-template-columns:minmax(0,1fr)}
+  .f-photo{min-height:0;aspect-ratio:4/5;max-height:80svh}
+  .f-body,.founder.nophoto .f-body{padding:48px 20px 56px}
+  .s-photo{min-height:0;aspect-ratio:4/5;max-height:72svh}
+  .s-body,.slide.nophoto .s-body{padding:40px 20px 56px}
+  .cd-grid{grid-template-columns:minmax(0,1fr)}
+  .cd-photo{min-height:0;aspect-ratio:4/3}
 }
 @media (max-width:520px){
   .row2{grid-template-columns:minmax(0,1fr)}
   .cta .btn{width:100%}
+  .tiers li{grid-template-columns:minmax(0,1fr) auto}
+  .tiers .b{grid-column:1 / -1;order:3}
+  .c-item{grid-template-columns:56px minmax(0,1fr) auto;gap:14px}
+  .c-ico{width:56px;height:56px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .rv{opacity:1;transform:none;transition:none;animation:none!important}
   .marquee-track{animation:none}
   .hero::before{transform:none}
+  .cdlg[open]{animation:none}
   *{transition:none!important}
 }
 </style>
@@ -207,22 +282,22 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
       <img src="img/logo-light.png" alt="Negroni, коктейльный бар" onerror="this.replaceWith(document.createTextNode('NEGRONI'))">
     </a>
     <nav class="nav" aria-label="Разделы">
-      <a href="#about">О баре</a>
-      <a href="#format">Что согласуем</a>
+      <a href="#about">О нас</a>
+      <a href="#format">Форматы</a>
+      <a href="#carte">Меню</a>
       <a href="#events">События</a>
       <a href="#venues">Заведениям</a>
-      <a href="#faq">Вопросы</a>
       <a class="btn sm" href="#request">Оставить заявку</a>
     </nav>
     <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
   </div>
 </header>
 <div class="menu" id="menu" hidden>
-  <a href="#about">О баре</a>
-  <a href="#format">Что согласуем</a>
+  <a href="#about">О нас</a>
+  <a href="#format">Форматы</a>
+  <a href="#carte">Меню</a>
   <a href="#events">События</a>
   <a href="#venues">Заведениям</a>
-  <a href="#faq">Вопросы</a>
   <a class="btn" href="#request">Оставить заявку</a>
 </div>
 
@@ -238,20 +313,32 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Свадьбы</span><span>Дни рождения</span><span>Корпоративы</span><span>Выездной бар</span>
-    <span>Свадьбы</span><span>Дни рождения</span><span>Корпоративы</span><span>Выездной бар</span>
-    <span>Свадьбы</span><span>Дни рождения</span><span>Корпоративы</span><span>Выездной бар</span>
-    <span>Свадьбы</span><span>Дни рождения</span><span>Корпоративы</span><span>Выездной бар</span>
+    <span>Свадьбы</span><span>Дни рождения</span><span>Корпоративы</span><span>Фестивали</span>
+    <span>Свадьбы</span><span>Дни рождения</span><span>Корпоративы</span><span>Фестивали</span>
+    <span>Свадьбы</span><span>Дни рождения</span><span>Корпоративы</span><span>Фестивали</span>
+    <span>Свадьбы</span><span>Дни рождения</span><span>Корпоративы</span><span>Фестивали</span>
   </div>
 </div>
 
 <main>
-  <section class="sec" id="about">
-    <div class="wrap about-grid">
-      <h2 class="rv">Бар, который становится частью вашего события</h2>
-      <div class="rv" style="--d:.12s">
-        <p class="lede">Подбираем меню, стиль и формат работы под вашу дату, площадку и гостей. Все детали обсуждаем заранее и фиксируем в договоре.</p>
-        <div class="cta"><a class="btn" href="#request">Обсудить событие</a></div>
+  <section id="about">
+      <div class="founder" id="founder">
+        <figure class="f-photo">
+          <img src="img/founder.jpg" alt="Александр Осипов, основатель Negroni" onerror="document.getElementById('founder').classList.add('nophoto');this.parentNode.remove()">
+        </figure>
+        <div class="f-body">
+          <h2>Привет, я Александр Осипов</h2>
+          <p class="f-lead">В 2021 году я создал уникальный выездной бар «NEGRONI».</p>
+          <p class="f-text">Концепция моего проекта максимально проста, она держится на трёх правилах: вкус, качество и эстетика. Опираясь на опыт работы в лучших барах региона, я выработал уникальную миксологию напитков. Коктейли бара «NEGRONI» создаются по вкусовым предпочтениям клиента и отвечают высокому требованию к продукту.</p>
+          <p class="f-text">Я держу под личным контролем все этапы: от подготовки до реализации. Моя команда — мои единомышленники. Это лучшие в своей профессии ребята, которые поддерживают имидж компании на высоком уровне. Совместно мы создаём уникальную атмосферу гостеприимства и показываем высокий сервис. В зависимости от задач мы предлагаем три пакета услуг, каждый из которых будет максимально точно отвечать потребностям клиента.</p>
+          <div class="cta"><a class="btn" href="#request">Обсудить событие</a></div>
+        </div>
+      </div>
+    <div class="wrap facts-wrap">
+      <div class="facts rv">
+        <div><b>2021</b><p>Год основания бара.</p></div>
+        <div><b>200+</b><p>Проведённых мероприятий: от камерных свадеб до брендовых фестивалей.</p></div>
+        <div><b>Барнаул</b><p>И пригород. Доставка по городу входит в готовые предложения.</p></div>
       </div>
     </div>
   </section>
@@ -259,17 +346,75 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
   <section class="sec slider-sec" id="format">
     <div class="wrap">
       <div class="slider-head rv">
-        <h2>Всё настраиваем под вас</h2>
+        <h2>Форматы</h2>
         <div class="ctrl">
           <div class="count" aria-live="polite"><span id="cur">01</span> / 03</div>
-          <button class="arrow" id="prev" type="button" aria-label="Предыдущий"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 3L5 9l6 6"/></svg></button>
-          <button class="arrow" id="next" type="button" aria-label="Следующий"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3l6 6-6 6"/></svg></button>
+          <button class="arrow" id="prev" type="button" aria-label="Предыдущий формат"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 3L5 9l6 6"/></svg></button>
+          <button class="arrow" id="next" type="button" aria-label="Следующий формат"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3l6 6-6 6"/></svg></button>
         </div>
       </div>
-      <div class="track" id="track" tabindex="0" aria-label="Что мы согласуем с вами">
-        <article class="slide"><h3>Меню</h3><p>Составляем меню вместе с вами: позиции и количество подбираем под ваших гостей и формат вечера.</p></article>
-        <article class="slide"><h3>Стиль</h3><p>Образы, оформление и подачу согласуем с характером события: от сдержанной классики до тематического вечера. Расскажите, что вы задумали, и мы предложим решение.</p></article>
-        <article class="slide"><h3>Формат</h3><p>Время работы, площадку и все условия обсуждаем индивидуально и фиксируем в договоре.</p></article>
+    </div>
+      <div class="track" id="track" tabindex="0" aria-label="Форматы и стоимость">
+
+        <article class="slide">
+          <figure class="s-photo"><img src="img/format-premium.jpg" alt="Бар Premium на мероприятии" loading="lazy" onerror="var s=this.closest('.slide');s.classList.add('nophoto');this.parentNode.remove()"></figure>
+          <div class="s-body">
+            <h3>Premium</h3>
+            <p class="s-text">Выездной бар «под ключ». Сопровождаем вас на всех этапах подготовки: авторская концепция коктейлей, хрустальная посуда, профессиональная команда и высокий уровень обслуживания.</p>
+            <ul class="tiers">
+              <li><span class="a">30 гостей</span><span class="b">90 коктейлей, 3 вида · 5 ч · 1 бармен</span><span class="c">69 000 ₽</span></li>
+              <li><span class="a">50 гостей</span><span class="b">120 коктейлей, 4 вида · 5 ч · 2 бармена</span><span class="c">75 000 ₽</span></li>
+              <li><span class="a">70 гостей</span><span class="b">150 коктейлей, 5 видов · 5 ч · 2 бармена</span><span class="c">78 000 ₽</span></li>
+            </ul>
+            <p class="s-note">Цены с доставкой по Барнаулу. Доставка и монтаж барной стойки оплачиваются отдельно. Время работы и объём можно изменить, обсудим при заключении договора.</p>
+          </div>
+        </article>
+
+        <article class="slide">
+          <figure class="s-photo"><img src="img/format-thematic.jpg" alt="Тематическое оформление бара" loading="lazy" onerror="var s=this.closest('.slide');s.classList.add('nophoto');this.parentNode.remove()"></figure>
+          <div class="s-body">
+            <h3>Thematic</h3>
+            <p class="s-text">Оформляем барную стойку и напитки под тему вашего события и воплощаем смелые идеи. Подскажем, как это выглядит лучше всего.</p>
+            <ul class="tiers">
+              <li><span class="a">Стилизация</span><span class="b">Стойка и напитки в тему события</span></li>
+              <li><span class="a">Ваши идеи</span><span class="b">Воплощаем то, что вы придумали</span></li>
+              <li><span class="a">Стоимость</span><span class="b">Считаем индивидуально, персонализация оплачивается отдельно</span></li>
+            </ul>
+            <div class="cta" style="margin-top:28px"><a class="btn" href="#request">Обсудить идею</a></div>
+          </div>
+        </article>
+
+        <article class="slide">
+          <figure class="s-photo"><img src="img/format-express.jpg" alt="Бар Express на мероприятии" loading="lazy" onerror="var s=this.closest('.slide');s.classList.add('nophoto');this.parentNode.remove()"></figure>
+          <div class="s-body">
+            <h3>Express</h3>
+            <p class="s-text">Для событий с ограниченным бюджетом или когда бар нужен срочно, например через несколько дней. Меню на выбор из авторской карты. Работаем в городе и пригороде.</p>
+            <ul class="tiers">
+              <li><span class="a">30 гостей</span><span class="b">50 коктейлей · 2 ч · 1 бармен</span><span class="c">30 000 ₽</span></li>
+              <li><span class="a">50 гостей</span><span class="b">100 коктейлей · 3 ч · 2 бармена</span><span class="c">40 000 ₽</span></li>
+              <li><span class="a">70 гостей</span><span class="b">150 коктейлей · 3 ч · 2 бармена</span><span class="c">50 000 ₽</span></li>
+            </ul>
+            <p class="s-note">Цены с доставкой по Барнаулу.</p>
+          </div>
+        </article>
+
+      </div>
+  </section>
+
+  <section class="sec incl-sec" id="included">
+    <div class="wrap incl-grid">
+      <div class="rv">
+        <h2>Что входит</h2>
+        <p class="lede">В готовые предложения уже заложено всё, что нужно для работы бара.</p>
+      </div>
+      <div class="rv" style="--d:.12s">
+        <ul class="incl">
+          <li>Хрустальная посуда</li>
+          <li>Украшения и лёд</li>
+          <li>Ингредиенты и расходники</li>
+          <li>10% безалкогольных напитков в каждом кейсе</li>
+        </ul>
+        <p class="incl-note">Эксклюзивные предложения оплачиваются отдельно.</p>
       </div>
     </div>
   </section>
@@ -298,7 +443,35 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
     </div>
   </section>
 
-  <section class="sec venue" id="venues">
+  <section class="sec carte" id="carte">
+    <div class="wrap">
+      <div class="rv">
+        <h2>Меню</h2>
+        <p class="lede">Основа, которую мы подстраиваем под ваше событие. Итоговый список согласуем с вами заранее.</p>
+        <p class="c-hint">Нажмите на коктейль, чтобы посмотреть фото и описание.</p>
+      </div>
+      <!--
+        Фото коктейлей лежат в папке img/menu. В data-photo указано имя без расширения:
+        сайт сам ищет файл в порядке .png, .webp, .jpg. Описание можно менять в data-desc.
+      -->
+      <ul class="carte-list rv" id="carteList">
+        <li><button type="button" class="c-item" data-photo="img/menu/mary-on" data-desc="Томатная основа с джином, клубникой и малиной. Овощная нота встречается с ягодной сладостью."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Mary on</span><span class="c-comp">Томат, джин, клубника, малина</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/rosa-in-flower" data-desc="Цветочный коктейль на джине. Личи и роза."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Rosa in flower</span><span class="c-comp">Джин, личи, роза</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/mirtillo-cocco" data-desc="Черничная водка с ванилью и кокосовым муссом. Ягодный вкус и мягкая кремовая текстура."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Mirtillo-cocco</span><span class="c-comp">Водка черника, ваниль, мусс кокосовый</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/bramble" data-desc="Ягодный джиновый коктейль: клубничный джин, ежевика и лайм."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Bramble</span><span class="c-comp">Джин клубничный, ежевика, лайм</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/negroni" data-desc="Горьковатая классика из трёх компонентов: джин, вермут и биттер."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Negroni</span><span class="c-comp">Вермут, биттер, джин</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/inchigo" data-desc="Водка с ванилью и виноградом, дополненная сливовым соджу."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Inchigo</span><span class="c-comp">Водка, ваниль, виноград, соджу сливовая</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/tocco-tenero" data-desc="Лёгкий коктейль с фейхоа и рислингом на водке, подаётся с содовой."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Tocco Tenero</span><span class="c-comp">Фейхоа, рислинг, водка, содовая</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/porn-star" data-desc="Тропический коктейль с маракуйей и ванильной водкой, подаётся с проссеко."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Porn Star</span><span class="c-comp">Ванильная водка, маракуйя, проссеко</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/bellini" data-desc="Классика из персика и проссеко."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Bellini</span><span class="c-comp">Персик, проссеко</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/ai-to-makoto" data-desc="Текила с дыней и лаймом."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Ai to makoto</span><span class="c-comp">Текила, дыня, лайм</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/mai-tai" data-desc="Тропическая классика на чёрном роме с миндалём, карамелью, лаймом и цитрусовым ликёром."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Mai-Tai</span><span class="c-comp">Ром чёрный, карамель, миндаль, лайм, цитрусовый ликёр</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="c-item" data-photo="img/menu/monica-belluci" data-desc="Тропический коктейль с ананасом и маракуйей на джине, подаётся с пеной."><span class="c-ico"></span><span class="c-txt"><span class="c-name">Monica Belluci</span><span class="c-comp">Ананас, джин, маракуйя, цитрусовый ликёр, пена</span></span><span class="c-go" aria-hidden="true"></span></button></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="venues">
     <div class="wrap venue-grid">
       <div class="rv">
         <h2>Для заведений</h2>
@@ -316,11 +489,12 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
     <div class="wrap faq-grid">
       <h2 class="rv">Частые вопросы</h2>
       <div class="rv" style="--d:.12s">
-        <details class="q"><summary>Как забронировать дату?</summary><p>Оставьте заявку на сайте или напишите нам в мессенджер. Мы уточним детали и подтвердим дату.</p></details>
+        <details class="q"><summary>Как заказать?</summary><p>Определите количество гостей и тип события, свяжитесь с нами и обсудите детали. Дальше бар работает, а вы отдыхаете.</p></details>
+        <details class="q"><summary>Что входит в стоимость?</summary><p>В готовые предложения входят хрустальная посуда, украшения, лёд, ингредиенты и расходники, а также 10% безалкогольных напитков. Доставка по Барнаулу включена. Доставка и монтаж барной стойки оплачиваются отдельно.</p></details>
         <details class="q"><summary>Можно ли выбрать меню и стиль?</summary><p>Да. Меню и стилистику бара согласуем под ваше событие.</p></details>
-        <details class="q"><summary>Для каких событий вы работаете?</summary><p>Свадьбы, дни рождения, корпоративы и другие частные и деловые мероприятия.</p></details>
+        <details class="q"><summary>С какими событиями вы работаете?</summary><p>Свадьбы, дни рождения, корпоративы и фестивали: от камерных вечеров до крупных брендовых событий.</p></details>
         <details class="q"><summary>Работаете ли вы с заведениями?</summary><p>Да. Проводим мероприятия на площадке заведения и консультируем по барной части. Выберите «Для заведения» в форме заявки, и мы обсудим вашу задачу.</p></details>
-        <details class="q"><summary>От чего зависит стоимость?</summary><p>От формата, количества гостей, меню и условий площадки. После заявки мы рассчитаем стоимость индивидуально.</p></details>
+        <details class="q"><summary>От чего зависит стоимость?</summary><p>От формата, количества гостей и коктейлей, времени работы и меню. Нестандартные идеи считаем индивидуально.</p></details>
       </div>
     </div>
   </section>
@@ -331,8 +505,10 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
         <h2>Оставить заявку</h2>
         <p class="lede">Расскажите о событии, и мы свяжемся с вами, чтобы обсудить детали.</p>
         <div class="contacts">
+          <a class="tlink" data-link="tel" href="#request">+7 (996) 707-66-53</a>
           <a class="tlink" data-link="tg" href="#request">Telegram</a>
           <a class="tlink" data-link="wa" href="#request">WhatsApp</a>
+          <a class="tlink" data-link="ig" href="#request">Instagram</a>
         </div>
       </div>
 
@@ -346,18 +522,18 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
           <div class="field"><label for="f_contact">Как с вами связаться</label><input id="f_contact" name="contact" type="text" placeholder="Телефон или @telegram" autocomplete="tel" required></div>
         </div>
         <div class="group" id="g_event">
-        <div class="row2">
-          <div class="field"><label for="f_date">Дата мероприятия</label><input id="f_date" name="date" type="date" required></div>
-          <div class="field"><label for="f_guests">Количество гостей</label><input id="f_guests" name="guests" type="number" inputmode="numeric" min="1" max="2000" required></div>
-        </div>
-        <div class="row2">
-          <div class="field"><label for="f_type">Тип события</label>
-            <select id="f_type" name="type" required>
-              <option value="">Выберите</option>
-              <option>Свадьба</option><option>День рождения</option><option>Корпоратив</option><option>Другое</option>
-            </select></div>
-          <div class="field"><label for="f_budget">Бюджет, ₽ <span class="opt">(по желанию)</span></label><input id="f_budget" name="budget" type="text" inputmode="numeric" placeholder="Например, 60 000"></div>
-        </div>
+          <div class="row2">
+            <div class="field"><label for="f_date">Дата мероприятия</label><input id="f_date" name="date" type="date" required></div>
+            <div class="field"><label for="f_guests">Количество гостей</label><input id="f_guests" name="guests" type="number" inputmode="numeric" min="1" max="2000" required></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="f_type">Тип события</label>
+              <select id="f_type" name="type" required>
+                <option value="">Выберите</option>
+                <option>Свадьба</option><option>День рождения</option><option>Корпоратив</option><option>Фестиваль</option><option>Другое</option>
+              </select></div>
+            <div class="field"><label for="f_budget">Бюджет, ₽ <span class="opt">(по желанию)</span></label><input id="f_budget" name="budget" type="text" inputmode="numeric" placeholder="Например, 60 000"></div>
+          </div>
         </div>
         <div class="group" id="g_venue" hidden>
           <div class="row2">
@@ -384,33 +560,61 @@ footer{background:var(--ink);color:var(--paper);padding-block:48px}
 
 <footer>
   <div class="wrap foot">
-    <div><img class="foot-logo" src="img/logo-light.png" alt="Negroni, коктейльный бар" onerror="this.replaceWith(document.createTextNode('NEGRONI'))"><p class="small">© 2026 Negroni</p></div>
+    <div><img class="foot-logo" src="img/logo-light.png" alt="Negroni, коктейльный бар" onerror="this.replaceWith(document.createTextNode('NEGRONI'))"><p class="small">Барнаул · © 2026 Negroni</p></div>
     <nav aria-label="Контакты">
+      <a class="tlink" data-link="tel" href="#request">+7 (996) 707-66-53</a>
       <a class="tlink" data-link="tg" href="#request">Telegram</a>
       <a class="tlink" data-link="wa" href="#request">WhatsApp</a>
+      <a class="tlink" data-link="ig" href="#request">Instagram</a>
     </nav>
   </div>
 </footer>
 
+<dialog class="cdlg nophoto" id="cdlg" aria-labelledby="cd_name">
+  <button class="cd-close" id="cd_close" type="button" aria-label="Закрыть"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2l12 12M14 2L2 14"/></svg></button>
+  <div class="cd-grid">
+    <figure class="cd-photo" id="cd_photo" hidden><img id="cd_img" alt=""></figure>
+    <div class="cd-body">
+      <div class="cd-nav">
+        <button class="arrow" id="cd_prev" type="button" aria-label="Предыдущий коктейль"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 3L5 9l6 6"/></svg></button>
+        <span id="cd_count">01 / 12</span>
+        <button class="arrow" id="cd_next" type="button" aria-label="Следующий коктейль"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3l6 6-6 6"/></svg></button>
+      </div>
+      <h3 id="cd_name"></h3>
+      <ul class="cd-tags" id="cd_tags"></ul>
+      <p id="cd_desc"></p>
+      <a class="btn" href="#request" id="cd_cta">Оставить заявку</a>
+    </div>
+  </div>
+</dialog>
+
+<script src="config.js"></script>
 <script>
 (function(){
 'use strict';
 
-/* ===== НАСТРОЙКИ: меняются только здесь ===== */
-var CONFIG={
-  webhook:'https://hook.eu1.make.com/lw6jsfq0tlotuyto159uyw4ygbw2wze0',   // адрес вебхука из Make
-  whatsapp:'79967076653',                  // номер для WhatsApp, цифры без плюса
-  telegram:'negroni_barnaul'                   // имя в Telegram без @
+/* Настройки лежат в файле config.js. Если его нет, берутся значения ниже. */
+var D={
+  webhook:'PASTE_MAKE_WEBHOOK_URL_HERE',
+  whatsapp:'79967076653',
+  telegram:'Negroni_Barnaul',
+  instagram:'negroni_barnaul',
+  phone:'+79967076653',
+  phoneText:'+7 (996) 707-66-53'
 };
-/* ========================================== */
+var CONFIG={},U=window.NEGRONI_CONFIG||{};
+Object.keys(D).forEach(function(k){CONFIG[k]=U[k]||D[k];});
 
 var loadedAt=Date.now();
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function $(s){return document.querySelector(s);}
 
-// ссылки на мессенджеры
-document.querySelectorAll('[data-link="tg"]').forEach(function(a){a.href='https://t.me/'+CONFIG.telegram;a.target='_blank';a.rel='noopener';});
-document.querySelectorAll('[data-link="wa"]').forEach(function(a){a.href='https://wa.me/'+CONFIG.whatsapp;a.target='_blank';a.rel='noopener';});
+// ссылки на контакты
+function ext(a,href){a.href=href;a.target='_blank';a.rel='noopener';}
+document.querySelectorAll('[data-link="tg"]').forEach(function(a){ext(a,'https://t.me/'+CONFIG.telegram);});
+document.querySelectorAll('[data-link="wa"]').forEach(function(a){ext(a,'https://wa.me/'+CONFIG.whatsapp);});
+document.querySelectorAll('[data-link="ig"]').forEach(function(a){ext(a,'https://instagram.com/'+CONFIG.instagram);});
+document.querySelectorAll('[data-link="tel"]').forEach(function(a){a.href='tel:'+CONFIG.phone;a.textContent=CONFIG.phoneText;});
 
 // появление блоков при прокрутке
 if('IntersectionObserver' in window&&!reduce){
@@ -451,7 +655,7 @@ burger.addEventListener('click',function(){setMenu(menu.hidden);});
 menu.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!menu.hidden){setMenu(false);burger.focus();}});
 
-// слайдер
+// слайдер форматов
 var track=$('#track'),cur=$('#cur');
 function idx(){return Math.round(track.scrollLeft/Math.max(1,track.clientWidth));}
 function show(){cur.textContent=('0'+(idx()+1)).slice(-2);}
@@ -475,6 +679,79 @@ window.addEventListener('load',function(){
   checkGallery();
 });
 
+// меню: окно с фото и описанием коктейля
+var items=[].slice.call(document.querySelectorAll('.c-item'));
+var dlg=$('#cdlg'),cdImg=$('#cd_img'),cdPhoto=$('#cd_photo'),cdName=$('#cd_name'),cdTags=$('#cd_tags'),cdDesc=$('#cd_desc'),cdCount=$('#cd_count');
+var pos=0,lastBtn=null;
+function two(n){return ('0'+n).slice(-2);}
+// ищем файл фото по очереди: png, webp, jpg
+var EXT=['.png','.webp','.jpg'];
+function pick(base,cb,i){
+  i=i||0;
+  if(i>=EXT.length){cb(null);return;}
+  var im=new Image();
+  im.onload=function(){cb(base+EXT[i]);};
+  im.onerror=function(){pick(base,cb,i+1);};
+  im.src=base+EXT[i];
+}
+function withPhoto(b,cb){
+  var s=b.getAttribute('data-src');
+  if(s!==null){cb(s||null);return;}
+  pick(b.getAttribute('data-photo'),function(src){b.setAttribute('data-src',src||'');cb(src);});
+}
+// иконки подгружаем, когда меню почти на экране
+function initIcons(){
+  items.forEach(function(b){
+    withPhoto(b,function(src){
+      var ico=b.querySelector('.c-ico');
+      if(!src){ico.classList.add('no-img');return;}
+      if(ico.querySelector('img'))return;
+      var im=document.createElement('img');im.src=src;im.alt='';ico.appendChild(im);
+    });
+  });
+}
+if('IntersectionObserver' in window){
+  var io2=new IntersectionObserver(function(es){if(es[0].isIntersecting){io2.disconnect();initIcons();}},{rootMargin:'400px 0px'});
+  io2.observe($('#carteList'));
+}else{initIcons();}
+function fill(i){
+  pos=(i+items.length)%items.length;
+  var b=items[pos],name=b.querySelector('.c-name').textContent;
+  cdName.textContent=name;
+  cdTags.innerHTML='';
+  b.querySelector('.c-comp').textContent.split(',').forEach(function(t){
+    var li=document.createElement('li');li.textContent=t.trim();cdTags.appendChild(li);
+  });
+  var d=b.getAttribute('data-desc')||'';
+  cdDesc.textContent=d;cdDesc.hidden=!d;
+  cdCount.textContent=two(pos+1)+' / '+two(items.length);
+  cdPhoto.hidden=true;dlg.classList.add('nophoto');
+  withPhoto(b,function(src){
+    if(!src||items[pos]!==b)return;
+    cdImg.src=src;cdImg.alt=name;cdPhoto.hidden=false;dlg.classList.remove('nophoto');
+  });
+}
+function openDlg(i){
+  lastBtn=items[i];fill(i);
+  document.body.classList.add('lock');
+  if(typeof dlg.showModal==='function')dlg.showModal();else dlg.setAttribute('open','');
+}
+function closeDlg(){
+  if(typeof dlg.close==='function')dlg.close();else dlg.removeAttribute('open');
+  document.body.classList.remove('lock');
+}
+items.forEach(function(b,i){b.addEventListener('click',function(){openDlg(i);});});
+$('#cd_close').addEventListener('click',closeDlg);
+$('#cd_prev').addEventListener('click',function(){fill(pos-1);});
+$('#cd_next').addEventListener('click',function(){fill(pos+1);});
+$('#cd_cta').addEventListener('click',closeDlg);
+dlg.addEventListener('click',function(e){if(e.target===dlg)closeDlg();});
+dlg.addEventListener('close',function(){document.body.classList.remove('lock');if(lastBtn)lastBtn.focus();});
+dlg.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'){fill(pos+1);e.preventDefault();}
+  if(e.key==='ArrowLeft'){fill(pos-1);e.preventDefault();}
+});
+
 // минимальная дата: сегодня
 var now=new Date();
 $('#f_date').min=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);
@@ -484,6 +761,7 @@ var form=$('#reqForm'),statusEl=$('#status'),btn=$('#send');
 var groups={event:$('#g_event'),venue:$('#g_venue')};
 var commentLabel=$('#l_comment');
 var LABELS={event:'О событии и пожелания по стилю',venue:'О заведении и задаче'};
+function say(text,kind){statusEl.textContent=text;statusEl.className='status'+(kind?' '+kind:'');}
 function getKind(){return form.elements.kind.value;}
 function setKind(k){
   form.querySelectorAll('input[name="kind"]').forEach(function(r){r.checked=(r.value===k);});
@@ -498,7 +776,7 @@ function resetForm(){var k=getKind();form.reset();setKind(k);}
 form.querySelectorAll('input[name="kind"]').forEach(function(r){r.addEventListener('change',function(){setKind(r.value);});});
 document.querySelectorAll('a[href="#request"]').forEach(function(a){a.addEventListener('click',function(){setKind(a.getAttribute('data-kind')||'event');});});
 setKind('event');
-function say(text,kind){statusEl.textContent=text;statusEl.className='status'+(kind?' '+kind:'');}
+
 form.addEventListener('submit',function(e){
   e.preventDefault();
   say('');
@@ -506,7 +784,7 @@ form.addEventListener('submit',function(e){
   if(form.website.value||Date.now()-loadedAt<2000){say('Заявка отправлена. Мы свяжемся с вами.','ok');resetForm();return;}
   if(!form.checkValidity()){form.reportValidity();return;}
   if(CONFIG.webhook.indexOf('http')!==0){
-    console.warn('Форма не подключена: укажи адрес вебхука в CONFIG.webhook');
+    console.warn('Форма не подключена: укажи адрес вебхука в config.js');
     say('Форма пока не подключена. Напишите нам в Telegram или WhatsApp.','err');return;
   }
   var kind=getKind(),data=new URLSearchParams();
