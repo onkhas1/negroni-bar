@@ -1,0 +1,34 @@
+/* Служебные страницы Negroni: политика, согласие, 404. Тот же мир, что у журнала: слоновая кость, графит, шампанское. */
+:root{
+  --night:#0E0D0B; --ivory:#EEE7DA; --champ:#B8996A; --champ-ink:#76603F;
+  --serif:'Prata', 'Times New Roman', serif;
+  --sans:'Onest', 'Helvetica Neue', Arial, sans-serif;
+  --gut:clamp(20px, 5vw, 64px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--ivory);color:var(--night);-webkit-text-size-adjust:100%}
+body{margin:0;font:300 17px/1.7 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--champ);color:var(--night)}
+a{color:inherit;text-decoration:underline;text-decoration-color:rgba(118,96,63,.45);text-underline-offset:3px;transition:text-decoration-color .2s}
+a:hover{text-decoration-color:var(--champ-ink)}
+:focus-visible{outline:1px solid var(--champ-ink);outline-offset:4px}
+
+.top{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gut);background:var(--night);color:var(--ivory)}
+.top img{height:26px;width:auto;display:block}
+.top a{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:10px;min-height:44px}
+.top a svg{width:18px;height:18px}
+.top a:hover{color:var(--champ)}
+
+.doc{max-width:46rem;margin:0 auto;padding:clamp(48px, 9vh, 96px) var(--gut) clamp(64px, 12vh, 120px)}
+.doc h1{font:400 clamp(30px, 8vw, 60px)/1.05 var(--serif);overflow-wrap:break-word;letter-spacing:-.02em;margin:0 0 .35em;text-wrap:balance}
+.doc .meta{margin:0 0 clamp(36px, 6vh, 56px);padding-bottom:22px;border-bottom:1px solid rgba(14,13,11,.16);font-size:14px;color:rgba(14,13,11,.62)}
+.doc h2{font:400 clamp(22px, 2.4vw, 28px)/1.25 var(--serif);margin:2.2em 0 .6em;text-wrap:balance}
+.doc p,.doc li{max-width:68ch}
+.doc p{margin:0 0 1em}
+.doc ul{margin:0 0 1.2em;padding-left:1.1em}
+.doc li{margin-bottom:.35em}
+.doc li::marker{color:var(--champ-ink)}
+.doc b{font-weight:500}
+.fill{color:var(--champ-ink)}
+
+.foot{padding:28px var(--gut);border-top:1px solid rgba(14,13,11,.16);font-size:13.5px;color:rgba(14,13,11,.6);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}

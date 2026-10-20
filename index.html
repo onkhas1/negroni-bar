@@ -6,11 +6,29 @@
 <title>Negroni — выездной бар, Барнаул</title>
 <meta name="description" content="Авторский выездной бар в Барнауле: хрустальная посуда, команда и коктейли под ваше событие. Форматы Premium, Thematic, Express.">
 <meta name="theme-color" content="#0E0D0B">
+<link rel="canonical" href="https://onkhas1.github.io/negroni-bar/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Negroni">
+<meta property="og:title" content="Negroni — выездной бар, Барнаул">
+<meta property="og:description" content="Авторские коктейли, хрустальная посуда и команда на вашем событии. Форматы и цены на сайте.">
+<meta property="og:url" content="https://onkhas1.github.io/negroni-bar/">
+<meta property="og:image" content="https://onkhas1.github.io/negroni-bar/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Логотип Negroni на фоне барной стойки">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230E0D0B'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23B8996A' font-family='Georgia,serif'%3EN%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500&family=Prata&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" href="fonts/prata-cyrillic.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/onest-cyrillic.woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="preload" as="image" href="video/hero-poster.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Negroni","description":"Авторский выездной бар: коктейли, хрустальная посуда и команда на свадьбах, днях рождения, корпоративах и фестивалях.","url":"https://onkhas1.github.io/negroni-bar/","image":"https://onkhas1.github.io/negroni-bar/img/og.jpg","telephone":"+79967076653","priceRange":"30 000–78 000 ₽","areaServed":"Барнаул","address":{"@type":"PostalAddress","addressLocality":"Барнаул","addressCountry":"RU"},"sameAs":["https://instagram.com/negroni_barnaul","https://t.me/Negroni_Barnaul"]}
+</script>
 <style>
 :root{
   --night:#0E0D0B; --night-2:#171511; --night-3:#221F19;
@@ -348,6 +366,16 @@ a{color:inherit}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--champ-ink);box-shadow:0 1px 0 var(--champ-ink)}
 .field input:user-invalid,.field select:user-invalid{border-color:#9A3A2A}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.agree{position:relative;display:flex;align-items:flex-start;gap:12px;margin:2px 0 clamp(14px, 2.4vh, 22px);font-size:13.5px;line-height:1.5;color:rgba(14,13,11,.72);cursor:pointer;max-width:56ch}
+.agree input{position:absolute;opacity:0;width:20px;height:20px;margin:0;cursor:pointer}
+.agree .box{flex:none;width:20px;height:20px;margin-top:1px;border:1px solid rgba(14,13,11,.4);display:grid;place-items:center;color:var(--ivory);transition:background-color .25s,border-color .25s}
+.agree .box svg{width:14px;height:14px;opacity:0;transform:scale(.6);transition:opacity .2s,transform .3s var(--out)}
+.agree input:checked+.box{background:var(--night);border-color:var(--night)}
+.agree input:checked+.box svg{opacity:1;transform:none}
+.agree input:focus-visible+.box{outline:1px solid var(--champ-ink);outline-offset:3px}
+.agree input:user-invalid+.box,.agree.bad .box{border-color:#9A3A2A}
+.agree a{text-decoration:underline;text-decoration-color:rgba(118,96,63,.5);text-underline-offset:3px;transition:text-decoration-color .2s}
+.agree a:hover{text-decoration-color:var(--champ-ink)}
 .send{display:flex;align-items:center;gap:24px;margin-top:8px}
 .cta.solid{background:var(--night);color:var(--ivory);border-color:var(--night);height:52px;padding:0 30px;flex:none}
 .cta.solid::before{background:var(--champ-ink)}
@@ -357,6 +385,21 @@ a{color:inherit}
 .status{margin:14px 0 0;min-height:1.5em;font-size:15px}
 .status.ok{color:#3E5C3A}
 .status.err{color:#9A3A2A}
+.bye a.legal{text-underline-offset:3px;text-decoration-color:rgba(14,13,11,.3)}
+
+/* ---------- cookie ---------- */
+.cookie{position:fixed;z-index:70;left:var(--gut);bottom:calc(var(--bot) + 12px);width:min(420px, calc(100vw - 2 * var(--gut)));padding:18px 20px;background:var(--night-2);color:var(--ivory);border:1px solid rgba(184,153,106,.35);box-shadow:0 18px 40px -12px rgba(0,0,0,.55);font-size:14px;line-height:1.5;opacity:0;transform:translateY(16px);transition:opacity .5s var(--out),transform .6s var(--out)}
+.cookie:not(.on){pointer-events:none}
+.cookie.on{opacity:1;transform:none}
+.cookie p{margin:0 0 14px;color:var(--ivory-dim)}
+.cookie a{color:var(--ivory);text-underline-offset:3px;text-decoration-color:rgba(184,153,106,.6)}
+.ck-b{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.ck-b button{height:40px;padding:0 16px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(238,231,218,.3);transition:background-color .25s,color .25s,border-color .25s}
+.ck-b button:hover{border-color:var(--champ)}
+.ck-b .ck-ok{background:var(--champ);border-color:var(--champ);color:var(--night)}
+.ck-b .ck-ok:hover{background:var(--ivory);border-color:var(--ivory)}
+@media (max-width: 760px){.cookie{padding:14px 16px;font-size:13px;bottom:calc(var(--bot) + 8px)}.cookie p{margin-bottom:12px}.ck-b{flex-wrap:nowrap}.ck-b button{flex:1;height:40px;padding:0 10px;letter-spacing:.1em}}
+@media (prefers-reduced-motion: reduce){.cookie{transition:opacity .2s}}
 
 /* ---------- оглавление ---------- */
 .toc{position:fixed;inset:0;z-index:60;background:var(--night);color:var(--ivory);clip-path:circle(0 at var(--ox, 90%) var(--oy, 5%));transition:clip-path .9s var(--ease);visibility:hidden}
@@ -715,7 +758,7 @@ a{color:inherit}
             <li><a data-link="wa" href="#">WhatsApp <span>написать</span></a></li>
             <li><a data-link="ig" href="#">Instagram <span>@<i data-text="instagram"></i></span></a></li>
           </ul>
-          <p class="bye" data-in style="--d:650">До встречи на мероприятии.<small>Барнаул · © 2026 Negroni · <button class="totop" data-go="0">На обложку ↑</button></small></p>
+          <p class="bye" data-in style="--d:650">До встречи на мероприятии.<small>Барнаул · © 2026 Negroni · <a class="legal" href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a> · <button class="totop" data-go="0">На обложку ↑</button></small></p>
         </div>
         <form id="reqForm" class="rform" novalidate data-in style="--d:450">
           <div class="kinds" role="radiogroup" aria-label="Кому нужен бар">
@@ -753,9 +796,14 @@ a{color:inherit}
           </div>
           <div class="field"><label for="f_comment"><span id="l_comment">О событии и пожелания по стилю</span> <span class="opt">по желанию</span></label><textarea id="f_comment" name="comment" rows="2"></textarea></div>
           <div class="hp" aria-hidden="true"><label for="f_site">Сайт</label><input id="f_site" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <label class="agree" for="f_agree">
+            <input id="f_agree" type="checkbox" required>
+            <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <span class="txt">Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span>
+          </label>
           <div class="send">
             <button class="cta solid" id="send" type="submit">Отправить заявку</button>
-            <p class="consent">Отправляя форму, вы соглашаетесь на обработку контактных данных, чтобы мы могли ответить на заявку.</p>
+            <p class="consent">Данные нужны только для ответа на заявку и никому не передаются.</p>
           </div>
           <p class="status" id="status" role="status" aria-live="polite"></p>
         </form>
@@ -1129,15 +1177,20 @@ $('#tCta').addEventListener('click',function(){toRequest({note:'Тема: '+T[tC
 form.addEventListener('submit',function(e){
   e.preventDefault();say('');
   if(form.website.value||Date.now()-loadedAt<2000){say('Заявка отправлена. Мы свяжемся с вами.','ok');form.reset();setKind('event');return;}
-  if(!form.checkValidity()){form.reportValidity();return;}
+  var agree=$('#f_agree');$('.agree').classList.toggle('bad',!agree.checked);
+  if(!form.checkValidity()){
+    if(!agree.checked&&$$('input,select,textarea',form).filter(function(el){return el!==agree&&!el.disabled&&!el.checkValidity();}).length===0){say('Отметьте согласие на обработку данных, без него мы не можем принять заявку.','err');agree.focus();return;}
+    form.reportValidity();return;}
   if((C.webhook||'').indexOf('http')!==0){say('Форма пока не подключена. Напишите нам в Telegram или WhatsApp.','err');return;}
   var kind=form.elements.kind.value,data=new URLSearchParams();
   data.append('kind',kind);
   ['name','contact','comment'].forEach(function(k){data.append(k,(form.elements[k].value||'').trim());});
   ['date','type','guests','budget'].forEach(function(k){data.append(k,kind==='event'?(form.elements[k].value||'').trim():'');});
   ['venue','city','interest'].forEach(function(k){data.append(k,kind==='venue'?(form.elements[k].value||'').trim():'');});
+  $('.agree').classList.remove('bad');
   data.append('page',location.href);data.append('sent_at',new Date().toISOString());
   sendBtn.disabled=true;sendBtn.textContent='Отправляем…';
+  if(window.ym&&C.metrika) ym(+C.metrika,'reachGoal','request');
   fetch(C.webhook,{method:'POST',mode:'no-cors',body:data}).then(function(){
     say('Заявка отправлена. Мы свяжемся с вами в ближайшее время.','ok');form.reset();setKind(kind);
     setTimeout(function(){sendBtn.disabled=false;sendBtn.textContent='Отправить заявку';},5000);
@@ -1197,6 +1250,28 @@ function menuStep(d){menuShow((mCur+d+M.length)%M.length);}
 $('#mPrev').onclick=function(){menuStep(-1);};
 $('#mNext').onclick=function(){menuStep(1);};
 menuShow(4);
+
+/* ---------- аналитика: Яндекс Метрика включается только с согласия ---------- */
+function loadMetrika(id){
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+  ym(id,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false});
+}
+var mId=+(C.metrika||0),choice=null;
+try{choice=localStorage.getItem('negroni-cookies');}catch(e){}
+if(mId){
+  if(choice==='all') loadMetrika(mId);
+  else if(!choice){
+    var ck=document.createElement('div');ck.className='cookie';ck.setAttribute('role','region');ck.setAttribute('aria-label','Файлы cookie');
+    ck.innerHTML='<p>Cookie и Яндекс Метрика помогают понять, какие страницы журнала читают. Подробнее в <a href="privacy.html" target="_blank" rel="noopener">политике</a>.</p><div class="ck-b"><button class="ck-no" type="button">Отклонить</button><button class="ck-ok" type="button">Принять</button></div>';
+    document.body.appendChild(ck);
+    setTimeout(function(){ck.classList.add('on');},2600);
+    var decide=function(v){try{localStorage.setItem('negroni-cookies',v);}catch(e){} ck.classList.remove('on');setTimeout(function(){ck.remove();},600); if(v==='all') loadMetrika(mId);};
+    $('.ck-ok',ck).onclick=function(){decide('all');};
+    $('.ck-no',ck).onclick=function(){decide('needed');};
+  }
+}
 })();
 </script>
 </body>

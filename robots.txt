@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://onkhas1.github.io/negroni-bar/sitemap.xml
